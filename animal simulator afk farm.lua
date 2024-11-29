@@ -42,18 +42,18 @@ task.spawn(function()
             Player.Character.HumanoidRootPart.Anchored = true
             local Servers = ListServers()
 
-            local foundServer = nil
+            local validServers = {}
             for _, server in pairs(Servers.data) do
                 local maxPlayers = server.maxPlayers
                 local playing = server.playing
-                if maxPlayers > (playing - 3) then
-                    foundServer = server
-                    break
+                if (playing >= 15) and ((maxPlayers - playing) >= 3) then
+                    table.insert(validServers, server)
                 end
             end
 
-            if foundServer then
-                TPS:TeleportToPlaceInstance(_place, foundServer.id, Player)
+            if #validServers > 0 then
+                local bestServer = validServers[math.random(1, #validServers)]
+                TPS:TeleportToPlaceInstance(_place, bestServer.id, Player)
             end
             break
         end
