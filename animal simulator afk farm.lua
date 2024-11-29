@@ -38,7 +38,7 @@ task.spawn(function()
             game:GetService("ReplicatedStorage").SkillsInRS.RemoteEvent:FireServer(unpack(args))
             l:Set("Target: "..randomPlayer.Name)
         end
-        task.wait(0.2)
+        task.wait(0)
     end
 end)
 
@@ -56,7 +56,7 @@ task.spawn(function()
          else
 	    l2:Set("Boss Attack: None")
         end
-        task.wait()
+        task.wait(0)
     end
 end)
 
@@ -72,7 +72,7 @@ task.spawn(function()
                 game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(selectedDummy.Humanoid, math.random(0, 10))
             end
         end
-        task.wait(0.8)
+        task.wait(0.35)
     end
 end)
 
