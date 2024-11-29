@@ -78,22 +78,26 @@ task.spawn(function()
 end)
 task.spawn(function()
     while task.wait(0.5) do
+            pcall(function()
         local npcs = workspace.NPC:GetChildren()
         if #npcs > 0 then
             local npcrandom = npcs[math.random(1, #npcs)]
             if npcrandom:FindFirstChild("Humanoid") then
+                    pcall(function()
                 local args = {
                     [1] = npcrandom.Humanoid,
                     [2] = math.random(1, 30)
                 }
                 game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
                 l2:Set("Boss Attack: "..npcrandom.Name)
+                end)
             else
                 l2:Set("No Humanoid: "..npcrandom.Name)
             end
         else
             l2:Set("Boss Attack: None")
         end
+    end)
     end
 end)
 
