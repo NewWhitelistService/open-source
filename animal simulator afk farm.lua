@@ -62,6 +62,7 @@ end)
 
 task.spawn(function()
     while task.wait(0.15) do
+            pcall(function()
         local players = game:GetService("Players"):GetPlayers()
         local randomPlayer = players[math.random(1, #players)]
         if randomPlayer.Character and randomPlayer.Character:FindFirstChild("Humanoid") and randomPlayer ~= game.Players.LocalPlayer then
@@ -74,6 +75,7 @@ task.spawn(function()
             game:GetService("ReplicatedStorage").SkillsInRS.RemoteEvent:FireServer(unpack(args))
             l:Set("Target: "..randomPlayer.Name)
         end
+        end)
     end
 end)
 task.spawn(function()
@@ -103,6 +105,7 @@ end)
 
 task.spawn(function()
     while task.wait(0.35) do
+            pcall(function()
         local dummiesFolder = workspace.MAP:FindFirstChild("5k_dummies")
         if dummiesFolder then
             local dummies = dummiesFolder:GetChildren()
@@ -113,11 +116,12 @@ task.spawn(function()
                 game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(selectedDummy.Humanoid, math.random(0, 10))
             end
         end
+        end)
     end
 end)
 
 task.spawn(function()
-    while task.wait(1) do
+    while task.wait(0.45) do
         pcall(function()
             game:GetService("ReplicatedStorage").Events.CoinEvent:FireServer()
         end)
