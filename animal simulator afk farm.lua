@@ -46,7 +46,7 @@ task.spawn(function()
             for _, server in pairs(Servers.data) do
                 local maxPlayers = server.maxPlayers
                 local playing = server.playing
-                if (playing >= 15) and ((maxPlayers - playing) >= 3) then
+                if (playing >= 12) and ((maxPlayers - playing) >= 3) then
                     table.insert(validServers, server)
                 end
             end
@@ -61,7 +61,7 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-    while task.wait(0.25) do
+    while task.wait(0.15) do
         local players = game:GetService("Players"):GetPlayers()
         local randomPlayer = players[math.random(1, #players)]
         if randomPlayer.Character and randomPlayer.Character:FindFirstChild("Humanoid") and randomPlayer ~= game.Players.LocalPlayer then
