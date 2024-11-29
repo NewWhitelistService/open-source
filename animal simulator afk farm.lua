@@ -52,7 +52,7 @@ task.spawn(function()
                 [2] = math.random(1, 20)
             }
             game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
-            l:Set("Boss Attack: "..npcrandom.Name)
+            l2:Set("Boss Attack: "..npcrandom.Name)
         end
         task.wait(0.3)
     end
