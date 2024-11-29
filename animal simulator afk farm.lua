@@ -1,11 +1,18 @@
 if game.PlaceId ~= 5712833750 then return end
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local bb = game:service("VirtualUser")
 game:service("Players").LocalPlayer.Idled:connect(function()
     bb:CaptureController()
     bb:ClickButton2(Vector2.new())
 end)
-
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Menu", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Tab = Window:MakeTab({
+	Name = ".",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local l = Tab:AddLabel(".")
+local l2 = Tab:AddLabel(".")
 task.spawn(function()
     while true do
         wait()
@@ -21,7 +28,7 @@ task.spawn(function()
     while true do
         local players = game:GetService("Players"):GetPlayers()
         local randomPlayer = players[math.random(1, #players)]
-        if randomPlayer.Character and randomPlayer.Character:FindFirstChild("Humanoid") then
+        if randomPlayer.Character and randomPlayer.Character:FindFirstChild("Humanoid") and randomPlayer ~= game.Players.LocalPlayer then
             local args = {
                 [1] = "damage",
                 [2] = {
@@ -29,16 +36,7 @@ task.spawn(function()
                 }
             }
             game:GetService("ReplicatedStorage").SkillsInRS.RemoteEvent:FireServer(unpack(args))
-
-            local avatarIcon = "rbxthumb://type=AvatarHeadShot&id=" .. randomPlayer.UserId .. "&w=180&h=180"
-            pcall(function()
-                OrionLib:MakeNotification({
-                    Name = "Random Player Damage",
-                    Content = "Damage sent to: " .. randomPlayer.Name,
-                    Image = avatarIcon,
-                    Time = 0.2
-                })
-            end)
+            l:Set("Target: "..randomPlayer.Name)
         end
         task.wait(0.2)
     end
@@ -48,13 +46,15 @@ task.spawn(function()
     while true do
         local npcs = workspace.NPC:GetChildren()
         if #npcs > 0 then
+        local npcrandom = npcs[math.random(1, #npcs)]
             local args = {
-                [1] = npcs[math.random(1, #npcs)].Humanoid,
+                [1] = npcrandom.Humanoid,
                 [2] = math.random(1, 20)
             }
             game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
+            l:Set("Boss Attack: "..npcrandom.Name)
         end
-        task.wait(0.35)
+        task.wait(0.3)
     end
 end)
 
@@ -70,7 +70,7 @@ task.spawn(function()
                 game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(selectedDummy.Humanoid, math.random(0, 10))
             end
         end
-        task.wait(0.5)
+        task.wait(0.8)
     end
 end)
 
