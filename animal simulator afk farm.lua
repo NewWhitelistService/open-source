@@ -49,12 +49,14 @@ task.spawn(function()
         local npcrandom = npcs[math.random(1, #npcs)]
             local args = {
                 [1] = npcrandom.Humanoid,
-                [2] = math.random(1, 20)
+                [2] = math.random(1, 30)
             }
             game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
             l2:Set("Boss Attack: "..npcrandom.Name)
+         else
+	    l2:Set("Boss Attack: None")
         end
-        task.wait(0.3)
+        task.wait()
     end
 end)
 
