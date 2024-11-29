@@ -7,15 +7,14 @@ end)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Menu", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 local Tab = Window:MakeTab({
-	Name = ".",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
+    Name = ".",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
 })
 local l = Tab:AddLabel(".")
 local l2 = Tab:AddLabel(".")
 task.spawn(function()
-    while true do
-        wait()
+    while wait() do
         game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
             if child.Name == "ErrorPrompt" and child:FindFirstChild("MessageArea") and child.MessageArea:FindFirstChild("ErrorFrame") then
                 game:GetService("TeleportService"):Teleport(game.PlaceId)
@@ -25,7 +24,32 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-    while true do
+    while wait(3) do
+        local players = game:GetService("Players"):GetPlayers()
+        if #players < 5 then
+            local Player = game.Players.LocalPlayer    
+            local Http = game:GetService("HttpService")
+            local TPS = game:GetService("TeleportService")
+            local Api = "https://games.roblox.com/v1/games/"
+            local _place, _id = game.PlaceId, game.JobId
+            local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=10"
+
+            function ListServers(cursor)
+                local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+                return Http:JSONDecode(Raw)
+            end
+
+            Player.Character.HumanoidRootPart.Anchored = true
+            local Servers = ListServers()
+            local Server = Servers.data[math.random(1, #Servers.data)]
+            TPS:TeleportToPlaceInstance(_place, Server.id, Player)
+            break
+        end
+    end
+end)
+
+task.spawn(function()
+    while task.wait(0.25) do
         local players = game:GetService("Players"):GetPlayers()
         local randomPlayer = players[math.random(1, #players)]
         if randomPlayer.Character and randomPlayer.Character:FindFirstChild("Humanoid") and randomPlayer ~= game.Players.LocalPlayer then
@@ -38,30 +62,31 @@ task.spawn(function()
             game:GetService("ReplicatedStorage").SkillsInRS.RemoteEvent:FireServer(unpack(args))
             l:Set("Target: "..randomPlayer.Name)
         end
-        task.wait(0)
     end
 end)
-
 task.spawn(function()
-    while true do
+    while task.wait(0.5) do
         local npcs = workspace.NPC:GetChildren()
         if #npcs > 0 then
-        local npcrandom = npcs[math.random(1, #npcs)]
-            local args = {
-                [1] = npcrandom.Humanoid,
-                [2] = math.random(1, 30)
-            }
-            game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
-            l2:Set("Boss Attack: "..npcrandom.Name)
-         else
-	    l2:Set("Boss Attack: None")
+            local npcrandom = npcs[math.random(1, #npcs)]
+            if npcrandom:FindFirstChild("Humanoid") then
+                local args = {
+                    [1] = npcrandom.Humanoid,
+                    [2] = math.random(1, 30)
+                }
+                game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
+                l2:Set("Boss Attack: "..npcrandom.Name)
+            else
+                l2:Set("No Humanoid: "..npcrandom.Name)
+            end
+        else
+            l2:Set("Boss Attack: None")
         end
-        task.wait(0)
     end
 end)
 
 task.spawn(function()
-    while true do
+    while task.wait(0.35) do
         local dummiesFolder = workspace.MAP:FindFirstChild("5k_dummies")
         if dummiesFolder then
             local dummies = dummiesFolder:GetChildren()
@@ -72,15 +97,13 @@ task.spawn(function()
                 game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(selectedDummy.Humanoid, math.random(0, 10))
             end
         end
-        task.wait(0.35)
     end
 end)
 
 task.spawn(function()
-    while true do
+    while task.wait(1) do
         pcall(function()
             game:GetService("ReplicatedStorage").Events.CoinEvent:FireServer()
         end)
-        task.wait(1)
     end
 end)
