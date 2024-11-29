@@ -32,7 +32,7 @@ task.spawn(function()
             local TPS = game:GetService("TeleportService")
             local Api = "https://games.roblox.com/v1/games/"
             local _place, _id = game.PlaceId, game.JobId
-            local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=10"
+            local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=2"
 
             function ListServers(cursor)
                 local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
