@@ -106,7 +106,7 @@ end)
 task.spawn(function()
     while task.wait(0.35) do
             pcall(function()
-        local dummiesFolder = workspace.MAP:FindFirstChild("5k_dummies")
+        local dummiesFolder = game.Players.LocalPlayer.leaderstats.Level.Value > 5000 and workspace.MAP:FindFirstChild("5k_dummies") or workspace.MAP:FindFirstChild("dummies")
         if dummiesFolder then
             local dummies = dummiesFolder:GetChildren()
             local selectedDummy = dummies[math.random(1, #dummies)]
