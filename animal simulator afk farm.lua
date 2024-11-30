@@ -5,14 +5,16 @@ game:service("Players").LocalPlayer.Idled:connect(function()
     bb:ClickButton2(Vector2.new())
 end)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Menu", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "animal simulator (afk)", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 local Tab = Window:MakeTab({
-    Name = ".",
+    Name = "main",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 local l = Tab:AddLabel(".")
 local l2 = Tab:AddLabel(".")
+local l3 = Tab:AddLabel(".")
+Tab:AddLabel("make by doitenroi.9941 in discord")
 task.spawn(function()
     while wait() do
         game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
@@ -107,6 +109,7 @@ task.spawn(function()
     while task.wait(0.35) do
             pcall(function()
         local dummiesFolder = game.Players.LocalPlayer.leaderstats.Level.Value > 5000 and workspace.MAP:FindFirstChild("5k_dummies") or workspace.MAP:FindFirstChild("dummies")
+        l3:Set("Level: "..game.Players.LocalPlayer.leaderstats.Level.Value)
         if dummiesFolder then
             local dummies = dummiesFolder:GetChildren()
             local selectedDummy = dummies[math.random(1, #dummies)]
