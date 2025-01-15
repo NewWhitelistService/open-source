@@ -14,6 +14,7 @@ local Tab = Window:MakeTab({
 local l = Tab:AddLabel(".")
 local l2 = Tab:AddLabel(".")
 local l3 = Tab:AddLabel(".")
+local LastPlayer = nil
 Tab:AddLabel("make by doitenroi.9941 in discord, remove auto dummy")
 task.spawn(function()
     while wait() do
@@ -64,19 +65,30 @@ end)
 
 task.spawn(function()
     while task.wait(0.15) do
-            pcall(function()
-        local players = game:GetService("Players"):GetPlayers()
-        local randomPlayer = players[math.random(1, #players)]
-        if randomPlayer.Character and randomPlayer.Character:FindFirstChild("Humanoid") and randomPlayer ~= game.Players.LocalPlayer then
-            local args = {
-                [1] = "damage",
-                [2] = {
-                    ["EnemyHumanoid"] = randomPlayer.Character.Humanoid
-                }
-            }
-            game:GetService("ReplicatedStorage").SkillsInRS.RemoteEvent:FireServer(unpack(args))
-            l:Set("Target: "..randomPlayer.Name)
-        end
+        pcall(function()
+            local Players = game:GetService("Players")
+            local LocalPlayer = Players.LocalPlayer
+            local allPlayers = Players:GetPlayers()
+            if #allPlayers > 1 then
+                local randomPlayer
+                repeat
+                    randomPlayer = allPlayers[math.random(1, #allPlayers)]
+                until randomPlayer ~= LocalPlayer and randomPlayer ~= LastPlayer
+
+                LastPlayer = randomPlayer
+
+                if randomPlayer.Character and randomPlayer.Character:FindFirstChild("HumanoidRootPart") and randomPlayer.Character:FindFirstChild("Humanoid") then
+                    LocalPlayer.Character:SetPrimaryPartCFrame(randomPlayer.Character.HumanoidRootPart.CFrame)
+
+                    local args = {
+                        [1] = randomPlayer.Character.Humanoid,
+                        [2] = math.random(1, 10)
+                    }
+
+                    game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
+                    l:Set("Target: " .. randomPlayer.Name)
+                end
+            end
         end)
     end
 end)
