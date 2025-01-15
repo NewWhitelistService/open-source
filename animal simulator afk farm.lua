@@ -104,7 +104,7 @@ task.spawn(function()
     end)
     end
 end)
-
+--[[
 task.spawn(function()
     while task.wait(0.35) do
             pcall(function()
@@ -122,7 +122,7 @@ task.spawn(function()
         end)
     end
 end)
-
+]]
 task.spawn(function()
     while task.wait(0.45) do
         pcall(function()
