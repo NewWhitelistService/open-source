@@ -11,11 +11,11 @@ local Tab = Window:MakeTab({
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
-local l = Tab:AddLabel(".")
+local l = Tab:AddLabel("remove player attack")
 local l2 = Tab:AddLabel(".")
 local l3 = Tab:AddLabel(".")
 
-Tab:AddLabel("make by doitenroi.9941 in discord, remove auto dummy")
+Tab:AddLabel("make by doitenroi.9941 in discord")
 task.spawn(function()
     while wait() do
         game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
@@ -62,7 +62,7 @@ task.spawn(function()
         end
     end
 end)
-
+--[[
 local LastPlayer = nil
 
 task.spawn(function()
@@ -91,7 +91,7 @@ task.spawn(function()
             end
         end)
     end
-end)
+end)]]
 task.spawn(function()
     while task.wait(0.5) do
             pcall(function()
@@ -119,9 +119,9 @@ end)
 task.spawn(function()
     while task.wait(0.35) do
             pcall(function()
-        --local dummiesFolder = game.Players.LocalPlayer.leaderstats.Level.Value > 5000 and workspace.MAP:FindFirstChild("5k_dummies") or workspace.MAP:FindFirstChild("dummies")
+        local dummiesFolder = game.Players.LocalPlayer.leaderstats.Level.Value > 5000 and workspace.MAP:FindFirstChild("5k_dummies") or workspace.MAP:FindFirstChild("dummies")
         l3:Set("Level: "..game.Players.LocalPlayer.leaderstats.Level.Value)
-        --[[if dummiesFolder then
+        if dummiesFolder then
             local dummies = dummiesFolder:GetChildren()
             local selectedDummy = dummies[math.random(1, #dummies)]
             if selectedDummy and selectedDummy:FindFirstChild("Humanoid") then
@@ -129,7 +129,7 @@ task.spawn(function()
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(newPosition)
                 game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(selectedDummy.Humanoid, math.random(0, 10))
             end
-        end]]
+        end
         end)
     end
 end)
