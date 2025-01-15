@@ -115,7 +115,7 @@ task.spawn(function()
         end
     end)
     end
-end
+end)
 task.spawn(function()
     while task.wait(0.35) do
             pcall(function()
