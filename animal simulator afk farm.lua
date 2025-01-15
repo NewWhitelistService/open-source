@@ -14,7 +14,7 @@ local Tab = Window:MakeTab({
 local l = Tab:AddLabel(".")
 local l2 = Tab:AddLabel(".")
 local l3 = Tab:AddLabel(".")
-local LastPlayer = nil
+
 Tab:AddLabel("make by doitenroi.9941 in discord, remove auto dummy")
 task.spawn(function()
     while wait() do
@@ -63,6 +63,8 @@ task.spawn(function()
     end
 end)
 
+local LastPlayer = nil
+
 task.spawn(function()
     while task.wait(0.15) do
         pcall(function()
@@ -77,21 +79,8 @@ task.spawn(function()
 
                 LastPlayer = randomPlayer
 
-                if randomPlayer.Character and randomPlayer.Character:FindFirstChild("HumanoidRootPart") and randomPlayer.Character:FindFirstChild("Humanoid") then
-                    LocalPlayer.Character:SetPrimaryPartCFrame(randomPlayer.Character.HumanoidRootPart.CFrame)
-
-                    local args = {
-                        [1] = randomPlayer.Character.Humanoid,
-                        [2] = math.random(1, 10)
-                    }
-
-                    game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
-                    l:Set("Target: " .. randomPlayer.Name)
-                end
-            end
-        end)
-    end
-end)
+                if randomPlayer.Character and randomPlayer.Character:FindFirstChild("HumanoidRootPart") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    LocalPlayer.Character:SetPrimaryPartCFrame(randomPlayer.Character.H
 task.spawn(function()
     while task.wait(0.5) do
             pcall(function()
