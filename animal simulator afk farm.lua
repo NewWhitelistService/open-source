@@ -80,7 +80,18 @@ task.spawn(function()
                 LastPlayer = randomPlayer
 
                 if randomPlayer.Character and randomPlayer.Character:FindFirstChild("HumanoidRootPart") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                    LocalPlayer.Character:SetPrimaryPartCFrame(randomPlayer.Character.H
+                    LocalPlayer.Character:SetPrimaryPartCFrame(randomPlayer.Character.HumanoidRootPart.CFrame)
+                    local args = {
+                        [1] = randomPlayer.Character:FindFirstChild("Humanoid"),
+                        [2] = math.random(1, 10)
+                    }
+                    game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
+                    l:Set("Target: " .. randomPlayer.Name)
+                end
+            end
+        end)
+    end
+end)
 task.spawn(function()
     while task.wait(0.5) do
             pcall(function()
