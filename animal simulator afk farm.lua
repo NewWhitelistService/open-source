@@ -4,7 +4,7 @@ game:service("Players").LocalPlayer.Idled:connect(function()
     bb:CaptureController()
     bb:ClickButton2(Vector2.new())
 end)
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/refs/heads/main/source')))()
+local OrionLib = loadstring(game:HttpGet(('https://gist.githubusercontent.com/Mc4121ban/f8dfc15fb9caf503c700bfd14523bd5c/raw/8eb117482c0ba1705de449058ad4a2d7f80ffbfb/gistfile1.txt')))()
 local Window = OrionLib:MakeWindow({Name = "animal simulator (afk)", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 local Tab = Window:MakeTab({
     Name = "main",
