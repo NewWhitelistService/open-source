@@ -25,7 +25,19 @@ task.spawn(function()
         end)
     end
 end)
-
+game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(state)
+    if state == Enum.TeleportState.InProgress then
+        if syn and syn.queue_on_teleport then
+            syn.queue_on_teleport([[ 
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NewWhitelistService/open-source/refs/heads/main/animal%20simulator%20afk%20farm.lua"))()
+            ]])
+        elseif queue_on_teleport then
+            queue_on_teleport([[ 
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/NewWhitelistService/open-source/refs/heads/main/animal%20simulator%20afk%20farm.lua"))()
+            ]])
+        end
+    end
+end)
 task.spawn(function()
     while wait(3) do
         local players = game:GetService("Players"):GetPlayers()
